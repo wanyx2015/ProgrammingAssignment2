@@ -35,7 +35,6 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Solve a matrix and cache it
 ## Next time just return it without solving it again
-
 cacheSolve <- function(x, ...) {
     
     ## Retrive the inverse of the matrix
