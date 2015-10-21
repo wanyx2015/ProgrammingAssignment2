@@ -1,7 +1,16 @@
-## cacheSolve() is a revised version of solve() which can cache the inverse
+## This is a revised version of solve() which can cache the inverse
+##
+## How to use:
+##
+## m <- matrix(rnorm(9), 3, 3) # Construct a matrix
+## a <- makeCacheMatrix(m)     # Pass the cache data structure to a
+## a$get()       # Print the matrix
+## a$getsolve()  # Print inverse, which is NULL because we haven't calculate it
+## cacheSolve(a) # First time calculate the inverse
+## a$getsolve()  # Print the inverse, which is cached in last step: cacheSolve(a)
+## cacheSolve(a) # Second time calculate the inverse, get from cache instead of calculation
 
 ## makeCacheMatrix is used to store the matrix and its inverse
-
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
     
@@ -42,7 +51,7 @@ cacheSolve <- function(x, ...) {
     data <- x$get()
     m <- solve(data)
     
-    ## Cache the inverse for future use
+    ## Cache the inverse
     x$setsolve(m)
     
     ## Return the inverse
